@@ -1,0 +1,2 @@
+# www to apex redirect
+https://www.tumakmusic.com/* https://tumakmusic.com/:splat 301
