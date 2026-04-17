@@ -144,7 +144,7 @@ Keep Hostinger for domain registration and email only. No need to pay for hostin
 
 These are optional upgrades you can do anytime:
 
-**YouTube API key** for auto-updating videos: Go to https://console.cloud.google.com, create a free project, enable "YouTube Data API v3", create an API key restricted to your domain, and replace `YOUR_YOUTUBE_API_KEY` in index.html.
+**YouTube API key** for auto-updating videos: Go to https://console.cloud.google.com, create a free project, enable "YouTube Data API v3", create an API key (restrict to HTTP referrer `https://tumakmusic.com/*` or to IPs if preferred), then add it in Cloudflare Pages → Settings → Environment Variables as `YOUTUBE_API_KEY`. The `/api/videos` Cloudflare Function picks it up automatically. Optionally set `YOUTUBE_CHANNEL_ID` to override the default channel.
 
 **Kit (ConvertKit) email capture**: Sign up at https://app.kit.com (free up to 10,000 subscribers), create a form, and connect it to the email form in index.html.
 
