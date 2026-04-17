@@ -529,100 +529,217 @@
      COME ALONG: the invitation
      ══════════════════════════════════════ */
   .invitation {
-    padding: 120px 0;
+    padding: 140px 0;
     position: relative;
     z-index: 2;
-  }
-
-  .invitation-card {
-    max-width: 580px;
-    margin: 0 auto;
-    text-align: center;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 64px 48px;
-    position: relative;
     overflow: hidden;
   }
 
-  /* Gradient accent */
+  /* Warm orange glow, upper */
+  .invitation::before {
+    content: '';
+    position: absolute;
+    top: 30%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 560px; height: 560px;
+    background: radial-gradient(ellipse at center, rgba(240, 133, 10, 0.16), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(12px);
+  }
+
+  /* Cool teal glow, lower — gives depth */
+  .invitation::after {
+    content: '';
+    position: absolute;
+    top: 72%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 460px; height: 280px;
+    background: radial-gradient(ellipse at center, rgba(13, 148, 136, 0.14), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(20px);
+  }
+
+  .invitation-card {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(24, 24, 24, 0.92) 0%, rgba(17, 17, 17, 0.96) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 72px 56px 64px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+      0 28px 80px rgba(0, 0, 0, 0.55),
+      0 0 0 1px rgba(240, 133, 10, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Soft animated top border */
   .invitation-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--orange), var(--teal));
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--orange) 35%, var(--teal-light) 65%, transparent 100%);
+    opacity: 0.85;
   }
 
-  /* Subtle warm glow behind the card */
-  .invitation::after {
+  /* Subtle inner vignette for warmth */
+  .invitation-card::after {
     content: '';
     position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px; height: 400px;
-    background: radial-gradient(ellipse, var(--orange-glow), transparent 70%);
+    inset: 0;
+    background: radial-gradient(ellipse at top, rgba(240, 133, 10, 0.05), transparent 50%);
     pointer-events: none;
-    z-index: 0;
   }
 
-  .invitation-card { position: relative; z-index: 1; }
+  .invitation-card > * { position: relative; z-index: 2; }
+
+  /* Animated equalizer bars — visual signature */
+  .invitation-waves {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 5px;
+    height: 26px;
+    margin-bottom: 22px;
+  }
+
+  .invitation-waves span {
+    display: block;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--teal-light);
+    opacity: 0.85;
+    transform-origin: bottom;
+    animation: eqbar 1.6s ease-in-out infinite;
+  }
+
+  .invitation-waves span:nth-child(1) { height: 40%; animation-delay: 0.0s; }
+  .invitation-waves span:nth-child(2) { height: 75%; animation-delay: 0.15s; }
+  .invitation-waves span:nth-child(3) { height: 100%; animation-delay: 0.3s; background: var(--orange); }
+  .invitation-waves span:nth-child(4) { height: 60%; animation-delay: 0.45s; }
+  .invitation-waves span:nth-child(5) { height: 90%; animation-delay: 0.2s; background: var(--orange); }
+  .invitation-waves span:nth-child(6) { height: 50%; animation-delay: 0.35s; }
+  .invitation-waves span:nth-child(7) { height: 30%; animation-delay: 0.1s; }
+
+  @keyframes eqbar {
+    0%, 100% { transform: scaleY(0.35); }
+    50% { transform: scaleY(1); }
+  }
+
+  .invitation-headline {
+    font-family: 'Gagalin', sans-serif;
+    font-size: clamp(30px, 4.5vw, 42px);
+    letter-spacing: 4px;
+    color: var(--text);
+    margin-bottom: 14px;
+    line-height: 1.05;
+  }
+
+  .invitation-headline .accent { color: var(--orange); }
 
   .email-intro {
     font-size: 15px;
     color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 28px;
+    line-height: 1.75;
+    margin: 0 auto 32px;
     font-weight: 300;
+    max-width: 400px;
   }
+
+  .email-intro .dim { color: var(--text-muted); }
 
   .email-form {
     display: flex;
-    gap: 12px;
+    gap: 10px;
+    max-width: 480px;
+    margin: 0 auto;
   }
 
   .email-form input[type="email"] {
     flex: 1;
-    padding: 14px 20px;
-    background: var(--surface2);
+    padding: 16px 22px;
+    background: rgba(10, 10, 10, 0.6);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 12px;
     color: var(--text);
     font-size: 14px;
     font-family: inherit;
     outline: none;
-    transition: border-color 0.3s var(--ease);
+    transition: all 0.3s var(--ease);
   }
 
   .email-form input::placeholder { color: var(--text-muted); }
-  .email-form input:focus { border-color: var(--orange); }
+  .email-form input:focus {
+    border-color: var(--orange);
+    background: rgba(10, 10, 10, 0.85);
+    box-shadow: 0 0 0 3px rgba(240, 133, 10, 0.12);
+  }
 
   .email-form button {
-    padding: 14px 28px;
-    background: var(--orange);
+    padding: 16px 26px;
+    background: linear-gradient(180deg, var(--orange) 0%, var(--orange-dark) 100%);
     color: var(--bg);
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 14px;
     font-weight: 700;
     font-family: inherit;
     cursor: pointer;
-    transition: all 0.3s var(--ease);
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 20px rgba(240, 133, 10, 0.3);
+    position: relative;
+    overflow: hidden;
   }
 
+  /* Shimmer sweep on hover */
+  .email-form button::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.7s var(--ease);
+  }
+
+  .email-form button:hover::before { left: 100%; }
+
   .email-form button:hover {
-    background: var(--teal);
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(13, 148, 136, 0.35);
+    box-shadow: 0 12px 32px rgba(240, 133, 10, 0.48);
+  }
+
+  .email-form button svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5;
+    transition: transform 0.3s var(--ease);
+  }
+
+  .email-form button:hover svg { transform: translateX(3px); }
+
+  .email-form button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
   }
 
   .email-note {
     font-size: 11px;
     color: var(--text-muted);
-    margin-top: 16px;
-    opacity: 0.7;
+    margin-top: 20px;
+    opacity: 0.75;
+    letter-spacing: 0.3px;
   }
 
   .form-success {
@@ -916,10 +1033,17 @@
   <div class="container">
     <div class="invitation-card reveal">
       <div id="formContent">
-        <p class="email-intro">New sessions, straight to your inbox.</p>
+        <div class="invitation-waves" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <h3 class="invitation-headline">Come <span class="accent">Along</span></h3>
+        <p class="email-intro">New sessions, direct to your inbox.<br><span class="dim">No noise. No pitch. Just the work.</span></p>
         <form class="email-form" id="emailForm">
           <input type="email" name="email" placeholder="your@email.com" required autocomplete="email" aria-label="Email address">
-          <button type="submit">I'm Down</button>
+          <button type="submit">
+            <span class="btn-label">I'm Down</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         </form>
         <p class="email-note">Unsubscribe anytime. Your email stays between us.</p>
       </div>
@@ -1035,12 +1159,13 @@
   document.getElementById('emailForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = this.querySelector('button');
+    const label = btn.querySelector('.btn-label');
     const emailInput = this.querySelector('input[name="email"]');
     const email = emailInput.value.trim();
     if (!email) return;
 
     btn.disabled = true;
-    btn.textContent = 'Joining...';
+    if (label) label.textContent = 'Joining...';
 
     try {
       const res = await fetch('/api/subscribe', {
@@ -1056,14 +1181,14 @@
         s.style.animation = 'arrive 0.4s ease-out forwards';
       } else {
         const data = await res.json().catch(() => ({}));
-        btn.textContent = data.error || 'Something went wrong. Try again.';
+        if (label) label.textContent = data.error || 'Try again';
         btn.disabled = false;
-        setTimeout(() => { btn.textContent = "I'm Down"; }, 3000);
+        setTimeout(() => { if (label) label.textContent = "I'm Down"; }, 3000);
       }
     } catch (err) {
-      btn.textContent = 'Connection error. Try again.';
+      if (label) label.textContent = 'Connection error';
       btn.disabled = false;
-      setTimeout(() => { btn.textContent = "I'm Down"; }, 3000);
+      setTimeout(() => { if (label) label.textContent = "I'm Down"; }, 3000);
     }
   });
 

@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Env
+.dev.vars
+.env
+.env.*
+
+# Wrangler / Cloudflare Pages
+.wrangler/
