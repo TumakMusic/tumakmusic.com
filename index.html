@@ -84,10 +84,10 @@
     --orange: #f0850a;
     --orange-dark: #c56e08;
     --orange-glow: rgba(240, 133, 10, 0.10);
-    --teal: #0d9488;
-    --teal-light: #14b8a6;
+    --teal: #155E58;
+    --teal-light: #155E58;
     --teal-muted: #435f61;
-    --teal-glow: rgba(13, 148, 136, 0.06);
+    --teal-glow: rgba(21, 94, 88, 0.10);
     --radius: 12px;
     --radius-lg: 20px;
     --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -236,9 +236,10 @@
   .statement p .teal { color: var(--teal-light); }
   .statement p .orange { color: var(--orange); }
 
-  /* Social row: left-aligned */
+  /* Social row: centered within the opening content column */
   .socials-row {
     display: flex;
+    justify-content: center;
     gap: 12px;
     margin-bottom: 40px;
   }
@@ -259,7 +260,7 @@
     color: var(--teal-light);
     border-color: var(--teal-light);
     transform: scale(1.08);
-    box-shadow: 0 0 16px rgba(13, 148, 136, 0.25);
+    box-shadow: 0 0 16px rgba(21, 94, 88, 0.35);
   }
 
   .s-link svg { width: 18px; height: 18px; fill: currentColor; }
@@ -554,7 +555,7 @@
     top: 72%; left: 50%;
     transform: translate(-50%, -50%);
     width: 460px; height: 280px;
-    background: radial-gradient(ellipse at center, rgba(13, 148, 136, 0.14), transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(21, 94, 88, 0.18), transparent 70%);
     pointer-events: none;
     z-index: 0;
     filter: blur(20px);
